@@ -1,7 +1,5 @@
 package com.newer.tea.controller;
 
-import java.util.HashMap;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,17 +24,15 @@ public class HomeController {
 	@Autowired
 	FromService fromService;
 	
-	@GetMapping("/")
+	@GetMapping
 	public From home(){
 		return fromService.orderFrom();
 	}
 	
 	@PostMapping("/add")
-	public HashMap<String, String> addOrder(@RequestBody Order order){
-		HashMap<String, String> map = new HashMap<>();
+	public void addOrder(@RequestBody Order order){
+		System.out.println(order);
 		orderService.subOrder(order);
-		
-		return null;
 	}
 
 }

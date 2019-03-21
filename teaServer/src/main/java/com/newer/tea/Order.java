@@ -65,4 +65,12 @@ public class Order {
 		this.ingredients = ingredients;
 	}
 
+	@Override
+	public String toString() {
+		return "Order [id=" + id + ", drink=" + drink + ", cuptype=" + cuptype + ", sweet=" + sweet + ", temperature="
+				+ temperature + ", ingredients=" + ingredients + "]";
+	}
+	
+	
+
 }
