@@ -8,22 +8,24 @@ import org.springframework.stereotype.Component;
 @Component
 @Document
 public class Order {
-	private int id;
+	private static int id = 1;
 	private String drink;
 	private String cuptype;
 	private String sweet;
 	private String temperature;
 	private List<String> ingredients;
-	
-	
+
+	public Order() {
+		id++;
+	}
 
 	public int getId() {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
+//	public void setId(int id) {
+//		this.id = id;
+//	}
 
 	public String getDrink() {
 		return drink;
@@ -70,7 +72,5 @@ public class Order {
 		return "Order [id=" + id + ", drink=" + drink + ", cuptype=" + cuptype + ", sweet=" + sweet + ", temperature="
 				+ temperature + ", ingredients=" + ingredients + "]";
 	}
-	
-	
 
 }

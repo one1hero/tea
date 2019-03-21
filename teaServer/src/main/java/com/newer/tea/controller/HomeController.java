@@ -1,8 +1,11 @@
 package com.newer.tea.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +27,7 @@ public class HomeController {
 	@Autowired
 	FromService fromService;
 	
-	@GetMapping
+	@GetMapping("/from")
 	public From home(){
 		return fromService.orderFrom();
 	}
@@ -33,6 +36,11 @@ public class HomeController {
 	public void addOrder(@RequestBody Order order){
 		System.out.println(order);
 		orderService.subOrder(order);
+	}
+	
+	@GetMapping("/orderlist/{page}")
+	public List<Object> orderList(@PathVariable("page") int page){
+		return orderService.loadOrderPage(page);
 	}
 
 }
