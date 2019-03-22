@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.newer.tea.Order;
 import com.newer.tea.PageableModel;
+import com.newer.tea.repository.MongoAutoidUtil;
 import com.newer.tea.repository.OrderRepository;
 
 @Service
@@ -16,6 +17,9 @@ public class OrderService {
 
 	@Autowired
 	OrderRepository mongo;
+	
+	@Autowired
+	MongoAutoidUtil mongoAutoidUtil;
 
 	/**
 	 * 下单
@@ -23,6 +27,7 @@ public class OrderService {
 	 * @param order
 	 */
 	public void subOrder(Order order) {
+		order.setId(mongoAutoidUtil.getNextSequence("seq_article"));
 		mongo.insert(order);
 	}
 

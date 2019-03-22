@@ -21,7 +21,7 @@ public class PageableModel implements Pageable {
 		this.pagenumber = pagenumber;
 		this.pagesize = pagesize;
 		List<Order> orders = new ArrayList<Order>();  //排序
-	    orders.add(new Order(Direction.DESC, "id"));
+	    orders.add(new Order(Direction.ASC, "id"));
 	    sort = new Sort(orders);
 	}
 	
