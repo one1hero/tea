@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.newer.tea.From;
 import com.newer.tea.Order;
+import com.newer.tea.OutOrder;
 import com.newer.tea.service.FromService;
 import com.newer.tea.service.OrderService;
 
@@ -41,6 +42,11 @@ public class HomeController {
 	@GetMapping("/orderlist/{page}")
 	public List<Object> orderList(@PathVariable("page") int page){
 		return orderService.loadOrderPage(page);
+	}
+	
+	@PostMapping("/out")
+	public void updateOrder(@RequestBody OutOrder order) {
+		orderService.outOrder(order);
 	}
 
 }

@@ -8,9 +8,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import com.newer.tea.Order;
+import com.newer.tea.OutOrder;
 import com.newer.tea.PageableModel;
 import com.newer.tea.repository.MongoAutoidUtil;
 import com.newer.tea.repository.OrderRepository;
+import com.newer.tea.repository.OutOrderRepository;
 
 @Service
 public class OrderService {
@@ -20,6 +22,9 @@ public class OrderService {
 	
 	@Autowired
 	MongoAutoidUtil mongoAutoidUtil;
+	
+	@Autowired
+	OutOrderRepository outOrderRep;
 
 	/**
 	 * 下单
@@ -42,6 +47,16 @@ public class OrderService {
 		list.add(page.getTotalPages());
 		list.add(page.getContent());
 		return list;
+	}
+	
+	
+	/**
+	 * 出货
+	 * @param order
+	 */
+	public void outOrder(OutOrder order) {
+		mongo.deleteById(order.getId());
+		outOrderRep.insert(order);
 	}
 
 }
