@@ -1,0 +1,59 @@
+<h3>出货表</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>订单号</th>
+      <th>饮品</th>
+      <th>规格</th>
+      <th>糖</th>
+      <th>温度</th>
+      <th>配料</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of orderList">
+      <td scope="row">{{order.id}}</td>
+      <td>{{order.drink}}</td>
+      <td>{{order.cuptype}}</td>
+      <td>{{order.sweet}}</td>
+      <td>{{order.temperature}}</td>
+      <td>
+        <span *ngFor="let pl of order.ingredients">
+          <span class="badge badge-pill badge-danger" *ngIf="pl === ingredient[0]">{{pl}}</span>
+        </span>
+
+        <span *ngFor="let pl of order.ingredients">
+          <span class="badge badge-pill badge-dark" *ngIf="pl === ingredient[1]">{{pl}}</span>
+        </span>
+
+        <span *ngFor="let pl of order.ingredients">
+          <span class="badge badge-pill badge-success" *ngIf="pl === ingredient[2]">{{pl}}</span>
+        </span>
+
+        <span *ngFor="let pl of order.ingredients">
+          <span class="badge badge-pill badge-warning" *ngIf="pl === ingredient[3]">{{pl}}</span>
+        </span>
+
+        <span class="badge badge-pill badge-secondary" *ngIf="order.ingredients.length === 0">无配料</span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<nav aria-label="Page navigation">
+  <ul class="pagination justify-content-center">
+    <li class="page-item" [class.disabled]="page === 1">
+      <a class="page-link" href="javascript:void(0)" aria-label="Previous" (click)="previous()">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    <li class="page-item" [class.active]="page === i+1" *ngFor="let i of sum"><a class="page-link" href="javascript:void(0)" (click)="setPage(i+1)">{{i+1}}</a></li>
+    <li class="page-item" [class.disabled]="page === maxpage">
+      <a class="page-link" href="javascript:void(0)" aria-label="Next" (click)="next()">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
