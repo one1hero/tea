@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Order } from '../order';
 import { DataService } from '../data.service';
+import { OutorderComponent } from '../outorder/outorder.component';
 
 @Component({
   selector: 'app-page',
@@ -23,6 +24,9 @@ export class PageComponent implements OnInit {
   totalPages = 0;
 
   sum: number[];
+
+  @ViewChild('outorder')
+  outorder: OutorderComponent;
 
   constructor(private service: DataService) {
 
@@ -88,7 +92,11 @@ export class PageComponent implements OnInit {
   outOrder(index: number) {
     this.service.postOutOrder(this.orderList[index]).subscribe(
       (res) => {
+        if (this.orderList.length === 1 && this.page > 1) {
+          this.page--;
+        }
         this.pageable();
+        this.outorder.pageable();
       }
     );
   }

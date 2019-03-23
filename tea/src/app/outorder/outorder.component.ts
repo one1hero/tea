@@ -49,6 +49,10 @@ export class OutorderComponent implements OnInit {
     );
   }
 
+  getting(aa: string) {
+    console.log(aa);
+  }
+
   ngOnInit() {
   }
 

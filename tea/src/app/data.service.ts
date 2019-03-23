@@ -9,7 +9,7 @@ import { Order } from './order';
 })
 export class DataService {
 
-  private url = 'http://192.168.43.29:8080';
+  private url = 'http://192.168.1.103:8080';
 
   constructor(private http: HttpClient) {
 
