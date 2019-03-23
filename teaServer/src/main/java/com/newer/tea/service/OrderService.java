@@ -37,7 +37,7 @@ public class OrderService {
 	}
 
 	/**
-	 * 查询
+	 * 查询订单表
 	 * 
 	 * @return
 	 */
@@ -57,6 +57,19 @@ public class OrderService {
 	public void outOrder(OutOrder order) {
 		mongo.deleteById(order.getId());
 		outOrderRep.insert(order);
+	}
+	
+	/**
+	 * 出货表分页查询
+	 * @param currentPage
+	 * @return
+	 */
+	public List<Object> loadOutOrderPage(Integer currentPage){
+		Page<OutOrder> page = outOrderRep.findAll(new PageableModel(currentPage, 5));
+		List<Object> list = new ArrayList<>();
+		list.add(page.getTotalPages());
+		list.add(page.getContent());
+		return list;
 	}
 
 }

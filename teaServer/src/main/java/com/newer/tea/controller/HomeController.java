@@ -48,5 +48,10 @@ public class HomeController {
 	public void updateOrder(@RequestBody OutOrder order) {
 		orderService.outOrder(order);
 	}
+	
+	@GetMapping("/outOrderlist/{page}")
+	public List<Object> loadOutOrder(@PathVariable("page") int page){
+		return orderService.loadOutOrderPage(page);
+	}
 
 }

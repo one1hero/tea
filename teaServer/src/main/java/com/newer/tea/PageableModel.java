@@ -1,28 +1,24 @@
 package com.newer.tea;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.domain.Sort.Order;
 
 public class PageableModel implements Pageable {
 
 	// 当前页
 	private Integer pagenumber;
+	
 	// 当前页面条数
 	private Integer pagesize;
+	
 	// 排序条件
 	private Sort sort;
 	
-	@SuppressWarnings("deprecation")
 	public PageableModel(Integer pagenumber,Integer pagesize) {
 		this.pagenumber = pagenumber;
 		this.pagesize = pagesize;
-		List<Order> orders = new ArrayList<Order>();  //排序
-	    orders.add(new Order(Direction.ASC, "id"));
-	    sort = new Sort(orders);
+	    sort = new Sort(Direction.ASC, "id");
 	}
 	
 	
