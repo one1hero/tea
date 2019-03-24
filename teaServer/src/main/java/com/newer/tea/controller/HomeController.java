@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.newer.tea.From;
 import com.newer.tea.Order;
 import com.newer.tea.OutOrder;
+import com.newer.tea.SalesVolume;
 import com.newer.tea.service.FromService;
 import com.newer.tea.service.OrderService;
+import com.newer.tea.service.ViewService;
 
 @RestController
 @RequestMapping("/tea/v1")
@@ -27,6 +29,9 @@ public class HomeController {
 	
 	@Autowired
 	FromService fromService;
+	
+	@Autowired
+	ViewService viewService;
 	
 	@GetMapping("/from")
 	public From home(){
@@ -52,6 +57,11 @@ public class HomeController {
 	@GetMapping("/outOrderlist/{page}")
 	public List<Object> loadOutOrder(@PathVariable("page") int page){
 		return orderService.loadOutOrderPage(page);
+	}
+	
+	@GetMapping("/viewdata")
+	public List<SalesVolume> loadData(){
+		return viewService.getData();
 	}
 
 }
